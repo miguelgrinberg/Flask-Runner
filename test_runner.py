@@ -11,7 +11,7 @@ class RunnerTestCase(unittest.TestCase):
         args = self.runner.parse_args([])
         self.assertTrue(args['host'] == '127.0.0.1')
         self.assertTrue(args['port'] == 5000)
-        self.assertTrue(args['use_debugger'] == False)
+        self.assertTrue(args['debug'] == False)
         self.assertTrue(args['use_evalex'] == True)
         self.assertTrue(args['use_reloader'] == False)
         self.assertTrue(args['extra_files'] == None)
@@ -23,12 +23,12 @@ class RunnerTestCase(unittest.TestCase):
 
     def test_debugger(self):
         args = self.runner.parse_args('--debug'.split())
-        self.assertTrue(args['use_debugger'] == True)
+        self.assertTrue(args['debug'] == True)
         self.assertTrue(args['use_evalex'] == True)
 
     def test_evalex(self):
         args = self.runner.parse_args('--debug --noeval'.split())
-        self.assertTrue(args['use_debugger'] == True)
+        self.assertTrue(args['debug'] == True)
         self.assertTrue(args['use_evalex'] == False)
 
     def test_reloader(self):
