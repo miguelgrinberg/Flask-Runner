@@ -18,10 +18,11 @@ setup(
     long_description=__doc__,
     py_modules=['flask_runner'],
     zip_safe=False,
+    data_files=[('', ['README.md', 'LICENSE'])],
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask'
+        'Flask',
     ],
     test_suite='test_runner',
     classifiers=[
