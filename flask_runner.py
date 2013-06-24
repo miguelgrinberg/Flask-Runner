@@ -12,7 +12,7 @@ class Runner():
         parser.add_argument('--port', metavar = 'PORT', type = int,
             default = 5000,
             help = 'port of the web server (default is 5000)')
-        parser.add_argument('--debug', dest = 'use_debugger', action = 'store_true',
+        parser.add_argument('--debug', dest = 'debug', action = 'store_true',
             help = 'enable the debugger')
         parser.add_argument('--noeval', dest = 'use_evalex', action = 'store_false',
             help = 'disable the exception evaluation feature in the debugger')
