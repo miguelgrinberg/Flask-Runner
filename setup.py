@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Runner',
-    version='1.0',
+    version='1.0.1',
     url='http://github.com/miguelgrinberg/flask-runner/',
     license='BSD',
     author='Miguel Grinberg',
@@ -23,6 +23,7 @@ setup(
     platforms='any',
     install_requires=[
         'Flask',
+        'argparse'
     ],
     test_suite='test_runner',
     classifiers=[
