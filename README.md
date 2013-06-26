@@ -27,13 +27,17 @@ This application now has command line options that expose many of the configurat
                     [--reload] [--extra FILE]
     
     optional arguments:
-      -h, --help    show this help message and exit
-      --host HOST   hostname or IP address to listen on (default is 127.0.0.1)
-      --port PORT   port of the web server (default is 5000)
-      --debug       enable the debugger
-      --noeval      disable the exception evaluation feature in the debugger
-      --reload      reload the Python process when any modules are changed
-      --extra FILE  additional file for the reloader to watch for changes
+      -h, --help            show this help message and exit
+      -H HOST, --host HOST  hostname or IP address to listen on (default is
+                            "127.0.0.1")
+      -P PORT, --port PORT  port of the web server (default is 5000)
+      -d, --debug           enable the debugger
+      --noeval              disable the exception evaluation feature in the
+                            debugger
+      -r, --reload          reload the Python process when any modules are changed
+      --extra FILE          additional file for the reloader to watch for changes
+      -p, --profile         run the profiler for each request
+      -l, --lint            run the lint validation middleware
 
 These are some example ways in which the application can be invoked:
 
@@ -64,4 +68,12 @@ Enable the interactive debugger and the reloader.
     $ python hello.py --reload --extra config.txt --extra babel.cfg
 
 Enable the interactive reloader and make it watch config.txt and babel.cfg in addition to the application source files.
+
+    $ python hello.py --profiler
+
+Run the Werkzeug profiler on each request.
+
+    $ python hello.py --link
+
+Run the Werkzeug lint middleware.
 

@@ -1,11 +1,13 @@
 import unittest
 from flask import Flask
+from werkzeug.contrib.profiler import ProfilerMiddleware
+from werkzeug.contrib.lint import LintMiddleware
 from flask.ext.runner import Runner
 
 class RunnerTestCase(unittest.TestCase):
     def setUp(self):
-        app = Flask(__name__)
-        self.runner = Runner(app)
+        self.app = Flask(__name__)
+        self.runner = Runner(self.app)
         
     def test_defaults(self):
         args = self.runner.parse_args([])
@@ -15,6 +17,8 @@ class RunnerTestCase(unittest.TestCase):
         self.assertTrue(args['use_evalex'] == True)
         self.assertTrue(args['use_reloader'] == False)
         self.assertTrue(args['extra_files'] == None)
+        self.assertFalse('profile' in args)
+        self.assertFalse('lint' in args)
         
     def test_host_port(self):
         args = self.runner.parse_args('--host 0.0.0.0 --port 8080'.split())
@@ -44,6 +48,14 @@ class RunnerTestCase(unittest.TestCase):
         args = self.runner.parse_args('--reload --extra some_file.txt --extra another_file.txt'.split())
         self.assertTrue(args['use_reloader'] == True)
         self.assertTrue(args['extra_files'] == ['some_file.txt', 'another_file.txt'])
+
+    def test_profiler(self):
+        args = self.runner.parse_args('--profile'.split())
+        self.assertTrue(type(self.app.wsgi_app) == ProfilerMiddleware)
+
+    def test_lint(self):
+        args = self.runner.parse_args('--lint'.split())
+        self.assertTrue(type(self.app.wsgi_app) == LintMiddleware)
 
 def suite():
     return unittest.makeSuite(RunnerTestCase)
