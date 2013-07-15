@@ -94,7 +94,7 @@ Run the Werkzeug lint middleware.
 Advanced Usage
 --------------
 
-Flask-Runner is built on top of [Flask-Script](http://flask-script.readthedocs.org/en/latest/) and it exposes all the classes and functions of that extension with some minor extensions. The following example creates a `manage.py` script:
+Flask-Runner is built on top of [Flask-Script](http://flask-script.readthedocs.org/en/latest/) and it exposes all the classes and functions of that extension with some minor additions. The following example creates a `manage.py` script:
 
     from flask import Flask
     from flask.ext.runner import Manager
@@ -114,7 +114,7 @@ Note that the `Manager` class is imported from `flask.ext.runner` instead of `fl
     Please provide a command:
       runserver  Runs the Flask development server i.e. app.run()
       shell      Runs a Python shell inside Flask application context.
-      test       Run unit tests.
+      test       Runs unit tests.
 
 The `runserver` commands exposes the same options available when using the `Runner` wrapper described above. The `shell` option is the same as in Flask-Script. The `test` command will run unit tests using `nose`.
 
