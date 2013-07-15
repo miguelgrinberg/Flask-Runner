@@ -9,12 +9,12 @@ from setuptools import setup
 
 setup(
     name='Flask-Runner',
-    version='1.0.3',
+    version='2.0.0',
     url='http://github.com/miguelgrinberg/flask-runner/',
     license='BSD',
     author='Miguel Grinberg',
     author_email='miguelgrinberg50@gmail.com',
-    description='A set of standard command line arguments for Flask applications',
+    description='A set of standard command line arguments for Flask applications built on top of Flask-Script',
     long_description=__doc__,
     py_modules=['flask_runner'],
     zip_safe=False,
@@ -23,9 +23,9 @@ setup(
     platforms='any',
     install_requires=[
         'Flask',
+        'Flask-Script',
         'argparse'
     ],
-    test_suite='test_runner',
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
