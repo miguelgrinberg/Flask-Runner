@@ -80,7 +80,7 @@ class Server(BaseServer):
                 **self.server_options)
 
 class Test(Command):
-    description = 'Run unit tests.'
+    description = 'Runs unit tests.'
     
     def get_options(self):
         return (Option('-c', '--with-coverage',
