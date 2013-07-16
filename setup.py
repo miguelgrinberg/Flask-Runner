@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Runner',
-    version='2.0.1',
+    version='2.0.2',
     url='http://github.com/miguelgrinberg/flask-runner/',
     license='BSD',
     author='Miguel Grinberg',

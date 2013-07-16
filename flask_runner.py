@@ -1,7 +1,6 @@
 import sys
 import os
 import argparse
-from app import app
 from flask.ext.script import Manager as BaseManager, Server as BaseServer, Shell
 from flask.ext.script import Command, Option, Group, prompt, prompt_bool, prompt_pass, prompt_choices
 
