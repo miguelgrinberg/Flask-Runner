@@ -100,7 +100,7 @@ class Manager(BaseManager):
             self.add_default_commands()
 
     def make_shell_context(self):
-        d = dict(app = app)
+        d = dict(app = self.app)
         try:
             from app import db
             d['db'] = db
