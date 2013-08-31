@@ -1,8 +1,7 @@
 import sys
 import os
 import argparse
-from flask.ext.script import Manager as BaseManager, Server as BaseServer, Shell
-from flask.ext.script import Command, Option, Group, prompt, prompt_bool, prompt_pass, prompt_choices
+from flask.ext.script import Manager as BaseManager, Server as BaseServer, Shell, Command, Option
 
 class Server(BaseServer):
     def get_options(self):
@@ -52,12 +51,18 @@ class Server(BaseServer):
         )
         return options
 
-    def handle(self, app, host, port, use_debugger, use_reloader,
-               threaded, processes, passthrough_errors, use_evalex,
-               extra_files, profile, profile_restrictions, profile_dir, lint):
+    def handle(self, app, *args, **kwargs):
+        #host, port, use_debugger, use_reloader,
+        #threaded, processes, passthrough_errors, use_evalex,
+        #extra_files, profile, profile_restrictions, profile_dir, lint):
         # we don't need to run the server in request context
         # so just run it directly
 
+        profile = kwargs['profile']
+        profile_restrictions = kwargs['profile_restrictions'] or ()
+        profile_dir = kwargs['profile_dir']
+        lint = kwargs['lint']
+        
         if profile:
             from werkzeug.contrib.profiler import ProfilerMiddleware
             app.wsgi_app = ProfilerMiddleware(app.wsgi_app,
@@ -67,16 +72,15 @@ class Server(BaseServer):
             from werkzeug.contrib.lint import LintMiddleware
             app.wsgi_app = LintMiddleware(app.wsgi_app)
 
-        app.run(host = host,
-                port = port,
-                use_debugger = use_debugger,
-                use_reloader = use_reloader,
-                threaded = threaded,
-                processes = processes,
-                passthrough_errors = passthrough_errors,
-                use_evalex = use_evalex,
-                extra_files = extra_files,
-                **self.server_options)
+        app.run(host = kwargs['host'],
+                port = kwargs['port'],
+                use_debugger = kwargs['use_debugger'],
+                use_reloader = kwargs['use_reloader'],
+                threaded = kwargs['threaded'],
+                processes = kwargs['processes'],
+                passthrough_errors = kwargs['passthrough_errors'],
+                use_evalex = kwargs['use_evalex'],
+                extra_files = kwargs['extra_files'])
 
 class Test(Command):
     description = 'Runs unit tests.'
@@ -124,11 +128,10 @@ class Runner(object):
 
     def handle(self, prog, args = None):
         server = Server()
-        arg_parser = server.create_parser(prog)
+        arg_parser = server.create_parser(prog, [])
 
         args = arg_parser.parse_args(args)
         server.handle(self.app, **args.__dict__)
 
     def run(self):
         self.handle(sys.argv[0], sys.argv[1:])
-

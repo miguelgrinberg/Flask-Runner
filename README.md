@@ -53,70 +53,9 @@ This application now has command line options that expose many of the configurat
                             DIR
       --lint                run the lint validation middleware
     
-These are some example ways in which the application can be invoked:
+Resources
+---------
 
-    $ python hello.py
-
-Start server with all defaults (listen on http://127.0.0.1:5000 with debugger and reloader).
-
-    $ python hello.py --host 0.0.0.0
-
-Listen on all public IPs.
-
-    $ python hello.py --port 8080
-
-Listen on port 8080.
-
-    $ python hello.py --no-debug
-
-Disable the interactive debugger.
-
-    $ python hello.py --noeval
-
-Disable evaluation of expressions on the debugger.
-
-    $ python hello.py --no-debug --no-reload
-
-Disable the interactive debugger and the reloader.
-
-    $ python hello.py --reload-extra config.txt --reload-extra babel.cfg
-
-Enable the interactive reloader and make it watch config.txt and babel.cfg in addition to the application source files.
-
-    $ python hello.py --profile --profile-count 30
-
-Run the Werkzeug profiler on each request showing the top 30 lines.
-
-    $ python hello.py --lint
-
-Run the Werkzeug lint middleware.
-
-Advanced Usage
---------------
-
-Flask-Runner is built on top of [Flask-Script](http://flask-script.readthedocs.org/en/latest/) and it exposes all the classes and functions of that extension with some minor additions. The following example creates a `manage.py` script:
-
-    from flask import Flask
-    from flask.ext.runner import Manager
-    app = Flask(__name__)
-    manager = Manager(app)
-
-    @app.route('/')
-    def hello_world():
-        return 'Hello World!'
-
-    if __name__ == '__main__':
-        manager.run()
-
-Note that the `Manager` class is imported from `flask.ext.runner` instead of `flask.ext.script`. This enhanced version of the `Manager` class provides three default commands:
-
-    $ python manage.py
-    Please provide a command:
-      runserver  Runs the Flask development server i.e. app.run()
-      shell      Runs a Python shell inside Flask application context.
-      test       Runs unit tests.
-
-The `runserver` commands exposes the same options available when using the `Runner` wrapper described above. The `shell` option is the same as in Flask-Script. The `test` command will run unit tests using `nose`.
-
-Refer to the [Flask-Script documentation](http://flask-script.readthedocs.org/en/latest/) for information on adding custom commands.
+- [Documentation](http://pythonhosted.org/Flask-Runner)
+- [pypi](https://pypi.python.org/pypi/Flask-Runner) 
 
