@@ -128,7 +128,7 @@ class Runner(object):
 
     def handle(self, prog, args = None):
         server = Server()
-        arg_parser = server.create_parser(prog, [])
+        arg_parser = server.create_parser(prog)
 
         args = arg_parser.parse_args(args)
         server.handle(self.app, **args.__dict__)
