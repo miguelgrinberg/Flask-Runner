@@ -74,6 +74,7 @@ class Server(BaseServer):
 
         app.run(host = kwargs['host'],
                 port = kwargs['port'],
+                debug = kwargs['use_debugger'],
                 use_debugger = kwargs['use_debugger'],
                 use_reloader = kwargs['use_reloader'],
                 threaded = kwargs['threaded'],
