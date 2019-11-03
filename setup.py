@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask>=0.9,<0.11',
+        'Flask>=0.9,<1.1',
         'Flask-Script>=0.6,<0.7',
         'argparse',
         'nose'

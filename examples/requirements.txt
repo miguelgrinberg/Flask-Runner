@@ -1,4 +1,4 @@
-Flask==0.10.1
+Flask==1.0
 Flask-Runner==2.1.1
 Flask-Script==0.6.6
 Jinja2==2.7.2
